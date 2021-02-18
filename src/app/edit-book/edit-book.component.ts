@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from 'app/core/data.service';
-import { LoggerService } from 'app/core/logger.service';
+import { DataService } from 'app/services/data.service';
+import { LoggerService } from 'app/services/logger.service';
 
 import { Book } from 'app/models/book';
 
 @Component({
   selector: 'app-edit-book',
   templateUrl: './edit-book.component.html',
-  styles: []
+  styles: [],
 })
 export class EditBookComponent implements OnInit {
 

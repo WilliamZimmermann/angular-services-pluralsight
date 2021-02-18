@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from "app/models/book";
 import { allBooks, allReaders } from 'app/data';
 import { Reader } from "app/models/reader";
-import { LoggerService } from 'app/core/logger.service';
-import { DataService } from 'app/core/data.service';
+import { LoggerService } from 'app/services/logger.service';
+import { DataService } from 'app/services/data.service';
 
 @Component({
   selector: 'app-dashboard',
