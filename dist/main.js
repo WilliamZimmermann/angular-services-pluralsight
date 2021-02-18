@@ -250,9 +250,7 @@ DataService.ctorParameters = () => [
     { type: _logger_service__WEBPACK_IMPORTED_MODULE_3__["LoggerService"] }
 ];
 DataService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
-    })
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
 ], DataService);
 
 
@@ -283,6 +281,7 @@ let DashboardComponent = class DashboardComponent {
     constructor(_loggerService, _dataService) {
         this._loggerService = _loggerService;
         this._dataService = _dataService;
+        this._loggerService.log('Creating the dashboard!');
     }
     ngOnInit() {
         this.allBooks = this._dataService.getAllBooks();
@@ -418,6 +417,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "QX6l");
 /* harmony import */ var _edit_book_edit_book_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./edit-book/edit-book.component */ "C9lS");
 /* harmony import */ var _edit_reader_edit_reader_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./edit-reader/edit-reader.component */ "dkrA");
+/* harmony import */ var _core_logger_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./core/logger.service */ "fSl4");
+/* harmony import */ var _core_data_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./core/data.service */ "QVKM");
+/* harmony import */ var _core_data_service_factory__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./core/data.service.factory */ "waJf");
+
+
+
 
 
 
@@ -446,7 +451,15 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]
         ],
-        providers: [],
+        providers: [
+            // PlainLoggerService,
+            // { provide: LoggerService, useExisting: PlainLoggerService },
+            { provide: _core_logger_service__WEBPACK_IMPORTED_MODULE_11__["LoggerService"], useValue: {
+                    log: (message) => console.log(`MESSAGE: ${message}`),
+                    error: (message) => console.log(`PROBLEM: ${message}`)
+                } },
+            { provide: _core_data_service__WEBPACK_IMPORTED_MODULE_12__["DataService"], useFactory: _core_data_service_factory__WEBPACK_IMPORTED_MODULE_13__["dataServiceFactory"], deps: [_core_logger_service__WEBPACK_IMPORTED_MODULE_11__["LoggerService"]] }
+        ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
     })
 ], AppModule);
@@ -553,9 +566,7 @@ let LoggerService = class LoggerService {
     }
 };
 LoggerService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
-    })
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
 ], LoggerService);
 
 
@@ -605,6 +616,27 @@ AppRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     })
 ], AppRoutingModule);
 
+
+
+/***/ }),
+
+/***/ "waJf":
+/*!**********************************************!*\
+  !*** ./src/app/core/data.service.factory.ts ***!
+  \**********************************************/
+/*! exports provided: dataServiceFactory */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dataServiceFactory", function() { return dataServiceFactory; });
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data.service */ "QVKM");
+
+function dataServiceFactory(logger) {
+    let dataService = new _data_service__WEBPACK_IMPORTED_MODULE_0__["DataService"](logger);
+    logger.log('Creating a new data service with a factory function.');
+    return dataService;
+}
 
 
 /***/ }),
