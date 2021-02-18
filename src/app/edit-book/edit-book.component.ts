@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from 'app/core/data.service';
+import { LoggerService } from 'app/core/logger.service';
 
 import { Book } from 'app/models/book';
-import { allBooks } from 'app/data';
 
 @Component({
   selector: 'app-edit-book',
@@ -13,15 +14,16 @@ export class EditBookComponent implements OnInit {
 
   selectedBook: Book;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private _dataService: DataService, private _loggerService: LoggerService) { }
 
   ngOnInit() {
     let bookID: number = parseInt(this.route.snapshot.params['id']);
-    this.selectedBook = allBooks.find(book => book.bookID === bookID);
+    this.selectedBook = this._dataService.getBookById(bookID);
   }
 
   setMostPopular(): void {
-    console.warn('Setting most popular book not yet implemented.');
+    this._dataService.setMostPopularBook(this.selectedBook);
+    this._loggerService.log(`New most popular book: ${this.selectedBook.title}`);
   }
 
   saveChanges(): void {

@@ -181,8 +181,8 @@ module.exports = Object.setPrototypeOf || ('__proto__' in {} ? function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\source\angular-services\src\polyfills.ts */"hN/g");
-module.exports = __webpack_require__(/*! C:\source\angular-services\node_modules\@angular-devkit\build-angular\src\webpack\jit-polyfills.js */"rZy+");
+__webpack_require__(/*! /Users/wzimmermann/Dev/pluralsight/angular-services/src/polyfills.ts */"hN/g");
+module.exports = __webpack_require__(/*! /Users/wzimmermann/Dev/pluralsight/angular-services/node_modules/@angular-devkit/build-angular/src/webpack/jit-polyfills.js */"rZy+");
 
 
 /***/ }),
